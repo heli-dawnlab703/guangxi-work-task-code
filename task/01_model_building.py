@@ -1,5 +1,5 @@
 import tensorflow as tf
-from keras.layers import Conv2D, BatchNormalization, LeakyReLU, UpSampling2D, Concatenate
+from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, UpSampling2D, Concatenate
 
 
 def DarknetConv2D_BN_Leaky(inputs, filters, kernel_size, name):
@@ -14,6 +14,13 @@ def build_structure_block(feat3, feat2, base_channels):
     conv_for_feat3 = DarknetConv2D_BN_Leaky(feat3, int(base_channels * 8), (1, 1), 'conv_for_feat3')
     P5 = conv_for_feat3
 
+    '''
+    上采样层的作用是通过插值等方法增加图像的宽度和高度。最常见的上采样方法之一是双线性插值，它通过对相邻像素进行加权平均来估计新像素的值。
+    
+    在深度学习中，上采样层通常用于将低分辨率的特征图还原为与输入图像相同分辨率的特征图，以便更好地保留细节信息。这在一些语义分割、图像生成等任务中是常见的操作。
+    
+    
+    '''
     # 上采样层
     P5_upsample = UpSampling2D()(P5)
 
@@ -36,3 +43,17 @@ model = tf.keras.Model(inputs=[feat3, feat2], outputs=output)
 # 打印模型结构
 model.summary()
 
+import tensorflow as tf
+
+# 假设 x 和 y 是两个输入张量
+x = 1
+y = 2
+
+# 定义 Add 层
+add_layer = tf.keras.layers.Add()
+
+# 将 x 和 y 通过 Add 层相加
+result = add_layer([x, y])
+
+# 将结果赋值给 y
+y = result
