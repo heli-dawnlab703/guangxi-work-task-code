@@ -20,7 +20,4 @@ modelcheckpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     mode='min',  # 当监测值为最小时触发保存
     verbose=1  # 显示保存信息
 )
-
-# 编译模型时
-# 编译模型时添加 ModelCheckpoint 回调
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'], callbacks=[modelcheckpoint_callback])
+cbs = [modelcheckpoint_callback]

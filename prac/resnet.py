@@ -96,6 +96,3 @@ def resnet18():
 def resnet34():
     # 通过调整模块内部BasicBlock的数量和配置实现不同的ResNet
     return ResNet([3, 4, 6, 3])
-
-resnet18 = resnet18()
-resnet18.summary()
